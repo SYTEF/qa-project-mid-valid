@@ -72,5 +72,4 @@ Tentar Captura com MID Invalido
     # Isso diz ao Robot: "Não falhe se o status não for 200. Eu mesmo vou verificar o status logo em seguida."
     ${response}=    POST On Session    payments_api    /api/capture    json=${body}    expected_status=any
     
-    # CORREÇÃO: Voltando para a sintaxe antiga [Return] (que funciona, mas dá aviso)
     RETURN    ${response}
