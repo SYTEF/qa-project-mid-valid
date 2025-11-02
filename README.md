@@ -8,7 +8,7 @@ O maior risco em um sistema de pagamentos distribuído é a inconsistência de d
 
 Para visualizar e validar isso, desenhei o fluxo de arquitetura e o **Quality Gate** que meu teste verifica:
 
-*(Insira aqui o seu diagrama final. Você pode arrastar o .png para o editor do GitHub)*
+<img width="755" height="670" alt="Fluxo_Integridade_Robot_Final" src="https://github.com/user-attachments/assets/4db65f64-d2cd-4540-82fd-1600ef39025f" />
 
 ### A Lógica do Teste:
 1.  **Setup (Autorização):** O teste primeiro simula uma Autorização bem-sucedida com o `MID_A`. O servidor salva esse `auth_code` e o `mid_idempotencia` (para evitar duplicidade).
