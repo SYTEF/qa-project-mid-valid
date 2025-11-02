@@ -79,7 +79,7 @@ robot Tests/MID_Integrity.robot
 ### 4. Verificar o Resultado
 O teste foi um sucesso (`1 test, 1 passed, 0 failed`). A prova completa da execução, incluindo a captura do erro `403`, está no arquivo `log.html` gerado na raiz do projeto.
 
-## 4. Próximos Passos (Minha Visão de Engineer III)
+## 4. Próximos Passos
 
 Este *framework* é a base. Meu plano de 6 meses seria:
 1.  **CI/CD:** Integrar este teste ao *pipeline* de CI/CD para que ele se torne um **Portão de Qualidade** (Quality Gate) real, barrando *deploys* que quebrem a integridade do MID.
