@@ -59,7 +59,6 @@ Fazer Autorizacao
     ${response}=    POST On Session    payments_api    /api/authorize    json=${body}
     Status Should Be    200    ${response}
     
-    # CORREÇÃO: Voltando para a sintaxe antiga [Return] (que funciona, mas dá aviso)
     RETURN    ${response}
     
 Tentar Captura com MID Invalido
