@@ -16,7 +16,7 @@ ${VALOR_TRANSACAO}    100.00
 # Roteiro (Test Cases):
 # "Este é o coração do projeto..."
 Cenario_MID_Inconsistente_Deve_Ser_Rejeitado_Na_Captura
-    [Documentation]    Testa o Quality Gate da Regra 1: A Captura deve falhar (403) se o MID for diferente da Autorizacao.
+    [Documentation]    Testa o Quality Gate da Regra: A Captura deve falhar (403) se o MID for diferente da Autorizacao.
     
     # --- SETUP: INICIA A CONEXÃO COM O SERVIÇO ---
     Create Session    payments_api    ${BASE_URL}
