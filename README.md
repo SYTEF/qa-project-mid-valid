@@ -1,88 +1,77 @@
-# Framework de Integridade de Pagamentos (POS-Backend)
+Esta é uma apresentação do *framework* de automação que desenvolvi, focado em **garantir a Integridade Transacional e a Escalabilidade** de APIs de Alto Risco. O projeto demonstra a evolução de um teste de segurança para um **Gateway de Qualidade** completo.
 
-Meu objetivo não foi apenas criar uma automação, mas sim conectar meu conhecimento de **Hardware (POS)** com os riscos reais do *backend*. O *framework* ataca a regra de negócio mais crítica para a integridade dos pagamentos: a **Consistência do Merchant ID (MID)** entre a Autorização e a Captura.
+## Propósito da Automação
 
-## 1. O Problema e Minha Abordagem (A Arquitetura)
+Minha automação foi desenvolvida para abordar três pilares essenciais que definem a qualidade em sistemas de pagamento:
 
-O maior risco em um sistema de pagamentos distribuído é a inconsistência de dados. Se uma Maquininha (POS) autoriza uma transação (`MID X`) e outra (`MID Y`) tenta capturá-la, isso pode gerar fraude ou falhas de conciliação.
+1.  **Integridade (403):** Garantir que o sistema bloqueie tentativas de Captura com Merchant ID (MID) inconsistente.
+2.  **Regras de Negócio (400):** Provar que o sistema rejeita valores e parcelamentos inválidos, usando Data-Driven Testing (DDT).
+3.  **Escalabilidade (Locust):** Medir se as APIs suportam o volume de transações de varios terminais POS.
 
-Para visualizar e validar isso, desenhei o fluxo de arquitetura e o **Quality Gate** que meu teste verifica:
+## Tecnológica
 
-<img width="755" height="670" alt="Fluxo_Integridade_Robot_Final" src="https://github.com/user-attachments/assets/4db65f64-d2cd-4540-82fd-1600ef39025f" />
+| Categoria | Ferramenta | Benefício Estratégico |
+| :--- | :--- | :--- |
+| **Orquestração** | **Robot Framework** | Facilidade de escrita e **legibilidade** do teste. |
+| **Escalabilidade** | **Python (Pandas)** | **Data-Driven Testing (DDT)**, permitindo cobrir 4 cenários de Regra de Negócio com *uma* única execução, garantindo a escalabilidade da cobertura. |
+| **Performance** | **Locust (Python)** | Medição de **Latência P95** e (RPS) sob carga. |
 
-### A Lógica do Teste:
-1.  **Setup (Autorização):** O teste primeiro simula uma Autorização bem-sucedida com o `MID_A`. O servidor salva esse `auth_code` e o `mid_idempotencia` (para evitar duplicidade).
-2.  **O Ataque (Captura):** Em seguida, o teste simula uma tentativa de Captura usando o `auth_code` correto, mas com o `MID_B` (o MID errado).
-3.  **O Quality Gate (A Prova):** O teste **PASSA** se, e somente se, o **Serviço de Captura** rejeitar o pedido com o erro exato que configuramos: `403 Forbidden: MID_MISMATCH`.
+---
 
-## 2. A Tecnologia (Por que Robot Framework?)
+## (MID Integrity)
 
-Eu escolhi o **Robot Framework** porque ele era um **diferencial da vaga** e se alinha perfeitamente com a cultura de **Team Play**:
+### 1. Execução e Evidência de Sucesso
 
-* **Declarativo:** O teste (`Tests/MID_Integrity.robot`) é escrito em formato legível. Isso significa que um QA Manual, um PO ou um Desenvolvedor pode ler e entender a regra de negócio que está sendo testada sem precisar ser um expert em Python.
-* **Keywords Reutilizáveis:** A lógica complexa da API (`Fazer Autorizacao`, `Tentar Captura...`) fica encapsulada nas *Keywords*. Isso torna a manutenção e a criação de novos testes de regras (Schemes) muito mais rápida.
+O teste verifica a regra de **segurança crítica**: impedir que um MID tente capturar a transação de outro MID.
 
-## 3. Como Executar o Projeto
+**Comando Executado:** `robot Tests/MID_Integrity.robot`
 
-Para rodar este projeto, segui estes passos:
+**Evidência:** O *framework* confirma o sucesso da execução funcional.
 
-### Pré-requisitos
-* Python 3.8+ (eu usei o 3.14)
-* Mockoon Desktop (para simular o *backend*)
-* Git
+**[c:\Users\enzob\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{9393E1F9-C362-4010-8180-554826DCE92B}.png]**
 
-### 1. Setup do Ambiente
-No terminal (usei o MINGW64), clone o projeto e prepare o ambiente:
-```bash
-# Clone este repositório
-git clone [SEU_LINK_DO_GITHUB_AQUI]
-cd stone-qa-robot-project
+### 2. Validação da Regra de Negócio
 
-# Crie e ative o ambiente virtual
-python -m venv venv
-source venv/Scripts/activate
+O teste não apenas falha, mas verifica o código de erro exato.
 
-# Instale as dependências (Robot e a biblioteca de API)
-pip install robotframework robotframework-requests pandas
-```
+**Análise do Log:** O log detalhado prova que o sistema retornou o status **`403 Forbidden`** e a mensagem de negócio **`MID_MISMATCH`**.
 
-### 2. Configurar o Servidor Simulado (Mockoon)
-Para o teste funcionar, o Mockoon precisa estar rodando na porta `3001` e configurado para simular nosso Quality Gate:
+**[c:\Users\enzob\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{FB6A7CDC-CE01-486A-A36A-46C5B03CDB00}.png]**
 
-1.  **Rota 1 (Setup):** `POST /api/authorize`
-    * **Resposta (200 OK):** Deve retornar o JSON de sucesso com o `auth_code`.
-        ```json
-        { "status": "APPROVED", "auth_code": "XYZ123", "transaction_id": "{{faker 'string.uuid'}}" }
-        ```
-        *(Nota: Tive que corrigir a sintaxe do Faker para `string.uuid`)*
+> **Conclusão:** "O `MID_Integrity.robot` estabeleceu o **Primeiro Quality Gate**, provando que o *backend* atua como um portão de segurança eficaz."
 
-2.  **Rota 2 (Quality Gate):** `POST /api/capture`
-    * **Resposta 1 (A Falha):** Status `403 Forbidden`.
-        * **Regra de Ativação:** `Body` -> `merchant_id` -> `equals` -> `MID_B`.
-        * **Body de Erro:**
-            ```json
-            { "error_code": "MID_MISMATCH", "message": "Capture failed..." }
-            ```
-    * **Resposta 2 (O Padrão):** Status `200 OK`.
-        * **Regra de Ativação:** Nenhuma (é o *fallback*).
-        * **Body de Sucesso:**
-            ```json
-            { "status": "CAPTURED", "capture_id": "CAP123" }
-            ```
+---
 
-### 3. Executar o Teste
-Com o `(venv)` ativo e o Mockoon rodando, execute o Robot:
-```bash
-robot Tests/MID_Integrity.robot
-```
+## Módulo 2: Cobertura e Escalabilidade de Regras (Pandas DDT)
 
-### 4. Verificar o Resultado
-O teste foi um sucesso (`1 test, 1 passed, 0 failed`). A prova completa da execução, incluindo a captura do erro `403`, está no arquivo `log.html` gerado na raiz do projeto.
+### 1. Execução do Data-Driven Testing
 
-## 4. Próximos Passos
+Para validar a cobertura de Regras de Negócio (`400 Bad Request`), o *framework* usa **Pandas** para ler os dados e repete a *Keyword* principal. A estrutura foi ajustada para reportar a contagem correta dos testes.
 
-Este *framework* é a base. Meu plano de 6 meses seria:
-1.  **CI/CD:** Integrar este teste ao *pipeline* de CI/CD para que ele se torne um **Portão de Qualidade** (Quality Gate) real, barrando *deploys* que quebrem a integridade do MID.
-2.  **PactFlow:** Evoluir este teste de API para um teste de **Contrato (PactFlow)**, garantindo que o "contrato" entre o Serviço de Captura e o Banco de Dados nunca seja quebrado.
-3.  **Escalar (Data-Driven):** Usar o `pandas` (que já instalei) para expandir este *framework* com um `CSV`, testando dezenas de outras regras de *Schemes* (Bandeiras) sem precisar escrever novo código.
-4.  **Kotlin:** Assim que eu estiver confortável com a *stack* da Stone, o plano é migrar as *Keywords* mais críticas do Robot para bibliotecas nativas em **Kotlin** (outro diferencial da vaga), aumentando a performance e a integração com os desenvolvedores.
+**Comando Executado:** `robot Tests/Data_Driven_Rules.robot`
+
+**Evidência:** O terminal confirma que todos os cenários do CSV foram processados.
+
+**[c:\Users\enzob\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{6733CB21-5F11-472A-B673-C7E4E314311D}.png]**
+
+### 2. Validação Lógica dos Limites
+
+O log confirma a asserção correta para as regras de validação.
+
+**Análise do Log:** O log detalhado prova que o *framework* validou tanto o sucesso (`200`) quanto as falhas de validação (`400`). Exemplo: A validação `Status 400 validado` para o cenário de valor zero.
+
+**[c:\Users\enzob\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{A545BA65-A1C5-499B-A56E-C239A91E4F34}.png]**
+
+> **Conclusão:** "O **Data-Driven Testing** garante que a falha de **Segurança (`403`)** é tratada separadamente da falha de **Validação de Regra de Negócio (`400`)**, garantindo a cobertura completa."
+
+---
+
+## Módulo 3: Performance e Visão Estratégica
+
+### 1. Teste de Carga (Locust)
+
+O teste de carga simula o volume de operação para medir se o sistema é **Resistente** sob stress.
+
+**Comando Executado:** `locust`
+
+c:\Users\enzob\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{67763E4B-496E-4D40-994B-255DEC2CB191}.png

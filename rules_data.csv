@@ -1,0 +1,4 @@
+test_name,amount,installments,mid_id,expected_status
+Cenario_Valor_Zero_Falha_Negocio,0.00,1,MID_A,400
+Cenario_Valor_Maximo_Permitido,9999.99,1,MID_A,200
+Cenario_Parcelado_Nao_Permitido,100.00,4,MID_A,400
