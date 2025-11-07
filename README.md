@@ -7,13 +7,12 @@
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-## Tecnológica
-
-| Categoria | Ferramenta | Benefício Estratégico |
-| :--- | :--- | :--- |
-| **Orquestração** | **Robot Framework** | Facilidade de escrita e **legibilidade** do teste. |
-| **Escalabilidade** | **Python (Pandas)** | **Data-Driven Testing (DDT)**, permitindo cobrir 4 cenários de Regra de Negócio com *uma* única execução, garantindo a escalabilidade da cobertura. |
-| **Performance** | **Locust (Python)** | Medição de **Latência P95** e (RPS) sob carga. |
+**Objetivo do Projeto**
+Este projeto tem como meta garantir a **confiabilidade e integridade** das comunicações entre terminais POS e serviços backend.  
+A automação cobre:
+- 🧩 **Integridade de MID** (Merchant ID) — validações de identidade e respostas HTTP.  
+- 🧠 **Regras de Negócio** — testes de consistência baseados em dados (`data-driven`).  
+- ⚙️ **Escalabilidade e Performance** — simulações de carga com usuários simultâneos.
 
 ---
 
