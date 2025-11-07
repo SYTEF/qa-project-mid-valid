@@ -28,7 +28,8 @@ O teste verifica a regra de **segurança crítica**: impedir que um MID tente ca
 
 **Evidência:** O *framework* confirma o sucesso da execução funcional.
 
-**[c:\Users\enzob\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{9393E1F9-C362-4010-8180-554826DCE92B}.png]**
+<img width="606" height="268" alt="{360FB7CD-7C96-4B59-AB8D-80BB721C67B7}" src="https://github.com/user-attachments/assets/94092609-fc2a-4d5a-bcc6-177142e45c10" />
+
 
 ### 2. Validação da Regra de Negócio
 
