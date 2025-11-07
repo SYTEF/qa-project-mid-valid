@@ -35,7 +35,6 @@ A automação cobre:
 | Manipulação de Dados | **Pandas** | Leitura e tratamento de cenários data-driven |
 | Teste de Carga | **Locust** | Simulação de múltiplos usuários |
 | Linguagem | **Python 3.10+** | Base principal do projeto |
-| Relatórios | **Robot Report + HTML** | Saída visual e análise de resultados |
 
 
 
