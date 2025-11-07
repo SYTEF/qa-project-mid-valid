@@ -6,7 +6,7 @@ from robot.libraries.BuiltIn import BuiltIn
 class DataLibrary(object):
     
     def __init__(self):
-        # O BuiltIn é necessário para usar Keywords do Robot dentro do Python
+        # necessário para usar Keywords do Robot dentro do Python
         self.builtin = BuiltIn() 
     
     @keyword
