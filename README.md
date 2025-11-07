@@ -49,6 +49,7 @@ cd qa-project-mid-valid
 Windows (Git Bash):
 
 python -m venv env
+
 source env/Scripts/activate
 
 ### 3. Instalar dependências
