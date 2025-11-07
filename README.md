@@ -21,8 +21,10 @@ A automação cobre:
 | **Integridade (MID)** | Testes de autenticação e resposta do backend em transações POS | Robot Framework |
 | **Regras de Negócio** | Validação automatizada de retornos 400 com base em parâmetros críticos | Robot Framework + CSV |
 | **Escalabilidade** | Medição de performance sob carga, p95, TPS e latência | Locust 
+<img width="2477" height="1645" alt="Diagrama" src="https://github.com/user-attachments/assets/a24f250d-14a9-450c-8426-3beaf5f22897" />
 
 ---
+
 
 ## (MID Integrity)
 
