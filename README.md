@@ -5,7 +5,6 @@
 ![Robot Framework](https://img.shields.io/badge/Robot_Framework-Testing-green)
 ![Locust](https://img.shields.io/badge/Load_Test-Locust-black)
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 
 ## **Objetivo** 
@@ -122,7 +121,7 @@ O log confirma a asserção correta para as regras de validação.
 
 ## Módulo 3: Performance e Visão Estratégica
 
-### 1. Teste de Carga (Locust)
+### Teste de Carga (Locust)
 
 O teste de carga simula o volume de operação para medir se o sistema é **Resistente** sob stress.
 
