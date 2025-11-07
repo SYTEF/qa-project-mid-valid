@@ -21,10 +21,10 @@ A automação cobre:
 | **Integridade (MID)** | Testes de autenticação e resposta do backend em transações POS | Robot Framework |
 | **Regras de Negócio** | Validação automatizada de retornos 400 com base em parâmetros críticos | Robot Framework + CSV |
 | **Escalabilidade** | Medição de performance sob carga, p95, TPS e latência | Locust 
-<img width="1187" height="247" alt="MIDX-MIDY drawio" src="https://github.com/user-attachments/assets/7f7435da-c5e2-43dd-9d88-cfcf1eb3e788" /><img width="1328" height="239" alt="LOCUST" src="https://github.com/user-attachments/assets/7cc86235-aa94-461a-a947-e4da7c000d33" /><img width="610" height="1072" alt="PANDASCSV" src="https://github.com/user-attachments/assets/85110df9-7849-4124-8d0b-bdaaaf2a4e12" />
 
-
-
+<img width="1187" height="247" alt="MIDX-MIDY drawio" src="https://github.com/user-attachments/assets/3e70e8b5-a904-4d1f-a1cc-4fb2cf45fdd4" />
+<img width="610" height="1072" alt="PANDASCSV" src="https://github.com/user-attachments/assets/8a1b8293-0490-44ca-8e87-d26232bfb811" />
+<img width="1328" height="239" alt="LOCUST" src="https://github.com/user-attachments/assets/46cca2eb-2174-4b22-86ea-55ef69fdb864" />
 
 ---
 
