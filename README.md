@@ -38,12 +38,32 @@ A automação cobre:
 | Linguagem | **Python 3.10+** | Base principal do projeto |
 | Relatórios | **Robot Report + HTML** | Saída visual e análise de resultados |
 
----
 
+
+---
+## **Como Executar o Projeto**
+
+### 1. Clonar o repositório
+git clone https://github.com/SYTEF/qa-project-mid-valid.git
+cd qa-project-mid-valid
+
+### 2. Criar e ativar o ambiente virtual
+Windows (Git Bash):
+
+python -m venv env
+source env/Scripts/activate
+
+### 3. Instalar dependências
+pip install -r requirements.txt
+
+### 4. Executar os testes funcionais
+robot Tests/MID_Integrity.robot
+robot Tests/Data_Driven_Rules.robot
+
+### 5. Executar o teste de carga
+locust -f locustfile.py
 
 ## (MID Integrity)
-
-### 1. Execução e Evidência de Sucesso
 
 O teste verifica a regra de **segurança crítica**: impedir que um MID tente capturar a transação de outro MID.
 
