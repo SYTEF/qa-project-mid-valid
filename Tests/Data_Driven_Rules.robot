@@ -32,7 +32,7 @@ Setup Data Driven Test
 Cenario Generico de Autorizacao
     [Arguments]    ${amount}    ${installments}    ${mid_id}    ${expected_status}
     
-    # ${TEST NAME} é uma variável do Robot que pega o nome do Test Case atual.
+    # ${TEST NAME} é uma variável do Robot que pega o nome do test Case atual.
     Log To Console    -- Executando Cenário: ${TEST NAME} --
 
     &{body}=    Create Dictionary    amount=${amount}    installments=${installments}    merchant_id=${mid_id}
