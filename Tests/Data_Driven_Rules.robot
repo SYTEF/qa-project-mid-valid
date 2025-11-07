@@ -1,5 +1,5 @@
 *** Settings ***
-Library    ../data_library.py
+Library    Library    ../src/data_library.py
 Library    RequestsLibrary
 Library    Collections
 
