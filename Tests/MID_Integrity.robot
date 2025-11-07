@@ -3,7 +3,7 @@
 Library    RequestsLibrary
 Library    Collections
 
-*** Variaveis ***
+*** Variables ***
 ${BASE_URL}    http://localhost:3001
 ${MID_CORRETO}    MID_A
 ${MID_ERRADO}     MID_B
