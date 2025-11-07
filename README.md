@@ -10,7 +10,7 @@
 ## **Objetivo** 
 Este projeto tem como meta garantir a **confiabilidade e integridade** das comunicações entre terminais POS e serviços backend.  
 A automação cobre:
-- **Integridade de MID** (Merchant ID) — validações de identidade e respostas HTTP.  
+- **Integridade de MID** (Merchant ID) — validações de identidade.  
 - **Regras de Negócio** — testes de consistência baseados em dados (`data-driven`).  
 - **Escalabilidade e Performance** — simulações de carga com usuários simultâneos.
 
