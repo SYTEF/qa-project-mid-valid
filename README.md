@@ -64,6 +64,8 @@ robot Tests/Data_Driven_Rules.robot
 ### 5. Executar o teste de carga
 locust
 
+Acesse http://localhost:8089 e inicie o teste no painel web.
+
 ## (MID Integrity)
 
 O teste verifica a regra de **segurança crítica**: impedir que um MID tente capturar a transação de outro MID.
