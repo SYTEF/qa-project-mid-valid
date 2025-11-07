@@ -1,12 +1,11 @@
-Esta é uma apresentação do *framework* de automação que desenvolvi, focado em **garantir a Integridade Transacional e a Escalabilidade** de APIs de Alto Risco. O projeto demonstra a evolução de um teste de segurança para um **Gateway de Qualidade** completo.
+# 🧩 QA Project MID Valid  
+> Framework de Garantia de Qualidade focado em **integridade de pagamentos**, **validação de regras de negócio** e **testes de escalabilidade** em APIs financeiras (POS → Backend).
 
-## Propósito da Automação
-
-Minha automação foi desenvolvida para abordar três pilares essenciais que definem a qualidade em sistemas de pagamento:
-
-1.  **Integridade (403):** Garantir que o sistema bloqueie tentativas de Captura com Merchant ID (MID) inconsistente.
-2.  **Regras de Negócio (400):** Provar que o sistema rejeita valores e parcelamentos inválidos, usando Data-Driven Testing (DDT).
-3.  **Escalabilidade (Locust):** Medir se as APIs suportam o volume de transações de varios terminais POS.
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Robot Framework](https://img.shields.io/badge/Robot_Framework-Testing-green)
+![Locust](https://img.shields.io/badge/Load_Test-Locust-black)
+![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ## Tecnológica
 
