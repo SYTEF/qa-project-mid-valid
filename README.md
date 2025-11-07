@@ -14,6 +14,14 @@ A automação cobre:
 - **Regras de Negócio** — testes de consistência baseados em dados (`data-driven`).  
 - **Escalabilidade e Performance** — simulações de carga com usuários simultâneos.
 
+**Arquitetura da Solução**
+
+| Pilar | Descrição | Ferramenta |
+|:--|:--|:--|
+| **Integridade (MID)** | Testes de autenticação e resposta do backend em transações POS | Robot Framework |
+| **Regras de Negócio** | Validação automatizada de retornos 400 com base em parâmetros críticos | Robot Framework + CSV |
+| **Escalabilidade** | Medição de performance sob carga, p95, TPS e latência | Locust 
+
 ---
 
 ## (MID Integrity)
