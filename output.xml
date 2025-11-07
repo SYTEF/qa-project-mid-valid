@@ -1,294 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.14.0 on win32)" generated="2025-11-05T16:39:00.315173" rpa="false" schemaversion="5">
-<suite id="s1" name="Data Driven Rules" source="C:\Users\enzob\qa-project-mid-valid\Tests\Data_Driven_Rules.robot">
-<test id="s1-t1" name="Cenario Limite Valor Minimo" line="15">
-<kw name="Setup Data Driven Test" type="SETUP">
+<robot generator="Robot 7.3.2 (Python 3.14.0 on win32)" generated="2025-11-07T01:50:54.458985" rpa="false" schemaversion="5">
+<suite id="s1" name="MID Integrity" source="C:\Users\enzob\qa-project-mid-valid\Tests\MID_Integrity.robot">
+<test id="s1-t1" name="Cenario_MID_Inconsistente_Deve_Ser_Rejeitado_Na_Captura" line="18">
 <kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.886497" level="INFO">Creating Session using : alias=payments_api, url=http://localhost:3001, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg time="2025-11-07T01:50:54.762025" level="INFO">Creating Session using : alias=payments_api, url=http://localhost:3001, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
 <arg>payments_api</arg>
-<arg>http://localhost:3001</arg>
+<arg>${BASE_URL}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-11-05T16:39:00.886377" elapsed="0.000279"/>
+<status status="PASS" start="2025-11-07T01:50:54.761883" elapsed="0.000284"/>
 </kw>
-<status status="PASS" start="2025-11-05T16:39:00.885729" elapsed="0.001025"/>
-</kw>
-<kw name="Cenario Generico de Autorizacao">
 <kw name="Log To Console" owner="BuiltIn">
-<arg>-- Executando Cenário: ${TEST NAME} --</arg>
+<arg>-- PASSO 1: Autorizando com ${MID_CORRETO} --</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.887156" elapsed="0.000164"/>
+<status status="PASS" start="2025-11-07T01:50:54.762316" elapsed="0.000176"/>
 </kw>
+<kw name="Fazer Autorizacao">
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.887738" level="INFO">&amp;{body} = { amount=0.01 | installments=1 | merchant_id=MID_A }</msg>
+<msg time="2025-11-07T01:50:54.763217" level="INFO">&amp;{body} = { merchant_id=MID_A | amount=100.00 }</msg>
 <var>&amp;{body}</var>
-<arg>amount=${amount}</arg>
-<arg>installments=${installments}</arg>
-<arg>merchant_id=${mid_id}</arg>
+<arg>merchant_id=${mid}</arg>
+<arg>amount=${valor}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.887400" elapsed="0.000361"/>
+<status status="PASS" start="2025-11-07T01:50:54.762952" elapsed="0.000286"/>
 </kw>
 <kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.896048" level="INFO">POST Request : url=http://localhost:3001/api/authorize 
+<msg time="2025-11-07T01:50:54.773884" level="INFO">POST Request : url=http://localhost:3001/api/authorize 
  path_url=/api/authorize 
- headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '63', 'Content-Type': 'application/json'} 
- body=b'{"amount": "0.01", "installments": "1", "merchant_id": "MID_A"}' 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '44', 'Content-Type': 'application/json'} 
+ body=b'{"merchant_id": "MID_A", "amount": "100.00"}' 
  </msg>
-<msg time="2025-11-05T16:39:00.896123" level="INFO">POST Response : url=http://localhost:3001/api/authorize 
+<msg time="2025-11-07T01:50:54.773967" level="INFO">POST Response : url=http://localhost:3001/api/authorize 
  status=200, reason=OK 
- headers={'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With', 'Content-Length': '109', 'Date': 'Wed, 05 Nov 2025 19:39:00 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With', 'Content-Length': '109', 'Date': 'Fri, 07 Nov 2025 04:50:54 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
  body={ 
-  "status": "APPROVED", "auth_code": "XYZ123", "transaction_id": "2270fac0-37cd-4a1d-a2d6-faec909bfe76" 
+  "status": "APPROVED", "auth_code": "XYZ123", "transaction_id": "d0b59d12-bf29-40dd-bd91-d6852143ccd7" 
 } 
  </msg>
-<msg time="2025-11-05T16:39:00.896202" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2025-11-07T01:50:54.774052" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
 <arg>payments_api</arg>
 <arg>/api/authorize</arg>
 <arg>json=${body}</arg>
-<arg>expected_status=any</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.887837" elapsed="0.008386"/>
+<status status="PASS" start="2025-11-07T01:50:54.763301" elapsed="0.010771"/>
 </kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.896641" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>${expected_status}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.896308" elapsed="0.000372"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Resultado: Status ${response.status_code} validado.</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.896749" elapsed="0.000314"/>
-</kw>
-<arg>0.01</arg>
-<arg>1</arg>
-<arg>MID_A</arg>
+<kw name="Status Should Be" owner="RequestsLibrary">
 <arg>200</arg>
-<status status="PASS" start="2025-11-05T16:39:00.886959" elapsed="0.010155"/>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-07T01:50:54.774156" elapsed="0.000147"/>
 </kw>
-<status status="PASS" start="2025-11-05T16:39:00.885119" elapsed="0.012118"/>
-</test>
-<test id="s1-t2" name="Cenario Valor Zero Falha Negocio" line="18">
-<kw name="Setup Data Driven Test" type="SETUP">
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.897884" level="INFO">Creating Session using : alias=payments_api, url=http://localhost:3001, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>payments_api</arg>
-<arg>http://localhost:3001</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-11-05T16:39:00.897825" elapsed="0.000155"/>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-11-07T01:50:54.774344" elapsed="0.000035"/>
+</return>
+<msg time="2025-11-07T01:50:54.774477" level="INFO">${AUTH_RESPONSE} = &lt;Response [200]&gt;</msg>
+<var>${AUTH_RESPONSE}</var>
+<arg>${MID_CORRETO}</arg>
+<arg>${VALOR_TRANSACAO}</arg>
+<status status="PASS" start="2025-11-07T01:50:54.762704" elapsed="0.011791"/>
 </kw>
-<status status="PASS" start="2025-11-05T16:39:00.897689" elapsed="0.000333"/>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-11-07T01:50:54.774959" level="INFO">${AUTH_CODE} = XYZ123</msg>
+<var>${AUTH_CODE}</var>
+<arg>${AUTH_RESPONSE.json()}</arg>
+<arg>auth_code</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-11-07T01:50:54.774624" elapsed="0.000353"/>
 </kw>
-<kw name="Cenario Generico de Autorizacao">
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-11-07T01:50:54.775177" level="INFO">Length is 6.</msg>
+<arg>${AUTH_CODE}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-11-07T01:50:54.775082" elapsed="0.000123"/>
+</kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>-- Executando Cenário: ${TEST NAME} --</arg>
+<arg>-- PASSO 2: Atacando com MID Invalido (${MID_ERRADO}) --</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.898327" elapsed="0.000115"/>
+<status status="PASS" start="2025-11-07T01:50:54.775300" elapsed="0.000144"/>
 </kw>
+<kw name="Tentar Captura com MID Invalido">
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.898725" level="INFO">&amp;{body} = { amount=0.00 | installments=1 | merchant_id=MID_A }</msg>
+<msg time="2025-11-07T01:50:54.776048" level="INFO">&amp;{body} = { auth_code=XYZ123 | merchant_id=MID_B | amount=100.00 }</msg>
 <var>&amp;{body}</var>
-<arg>amount=${amount}</arg>
-<arg>installments=${installments}</arg>
-<arg>merchant_id=${mid_id}</arg>
+<arg>auth_code=${auth_code}</arg>
+<arg>merchant_id=${mid}</arg>
+<arg>amount=${valor}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.898517" elapsed="0.000228"/>
+<status status="PASS" start="2025-11-07T01:50:54.775840" elapsed="0.000227"/>
 </kw>
 <kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.902482" level="INFO">POST Request : url=http://localhost:3001/api/authorize 
- path_url=/api/authorize 
- headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '63', 'Content-Type': 'application/json'} 
- body=b'{"amount": "0.00", "installments": "1", "merchant_id": "MID_A"}' 
+<msg time="2025-11-07T01:50:54.781992" level="INFO">POST Request : url=http://localhost:3001/api/capture 
+ path_url=/api/capture 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '67', 'Content-Type': 'application/json'} 
+ body=b'{"auth_code": "XYZ123", "merchant_id": "MID_B", "amount": "100.00"}' 
  </msg>
-<msg time="2025-11-05T16:39:00.902526" level="INFO">POST Response : url=http://localhost:3001/api/authorize 
- status=400, reason=Bad Request 
- headers={'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With', 'Content-Length': '89', 'Date': 'Wed, 05 Nov 2025 19:39:00 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+<msg time="2025-11-07T01:50:54.782035" level="INFO">POST Response : url=http://localhost:3001/api/capture 
+ status=403, reason=Forbidden 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With', 'Content-Length': '67', 'Date': 'Fri, 07 Nov 2025 04:50:54 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
  body={ 
-  "error_code": "INVALID_AMOUNT", "message": "The amount must be greater than zero."
+  "error_code": "MID_MISMATCH", "message": "Capture failed..."
 } 
  </msg>
-<msg time="2025-11-05T16:39:00.902592" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<msg time="2025-11-07T01:50:54.782097" level="INFO">${response} = &lt;Response [403]&gt;</msg>
 <var>${response}</var>
 <arg>payments_api</arg>
-<arg>/api/authorize</arg>
+<arg>/api/capture</arg>
 <arg>json=${body}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.898811" elapsed="0.003799"/>
+<status status="PASS" start="2025-11-07T01:50:54.776134" elapsed="0.005981"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-11-07T01:50:54.782161" elapsed="0.000030"/>
+</return>
+<msg time="2025-11-07T01:50:54.782286" level="INFO">${CAPTURE_RESPONSE} = &lt;Response [403]&gt;</msg>
+<var>${CAPTURE_RESPONSE}</var>
+<arg>${AUTH_CODE}</arg>
+<arg>${MID_ERRADO}</arg>
+<arg>${VALOR_TRANSACAO}</arg>
+<status status="PASS" start="2025-11-07T01:50:54.775611" elapsed="0.006692"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.902961" level="INFO">Argument types are:
+<msg time="2025-11-07T01:50:54.782690" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>${expected_status}</arg>
+<arg>${CAPTURE_RESPONSE.status_code}</arg>
+<arg>403</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.902683" elapsed="0.000315"/>
+<status status="PASS" start="2025-11-07T01:50:54.782421" elapsed="0.000305"/>
 </kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Resultado: Status ${response.status_code} validado.</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.903062" elapsed="0.000286"/>
-</kw>
-<arg>0.00</arg>
-<arg>1</arg>
-<arg>MID_A</arg>
-<arg>400</arg>
-<status status="PASS" start="2025-11-05T16:39:00.898158" elapsed="0.005232"/>
-</kw>
-<status status="PASS" start="2025-11-05T16:39:00.897446" elapsed="0.006051"/>
-</test>
-<test id="s1-t3" name="Cenario Valor Maximo Permitido" line="21">
-<kw name="Setup Data Driven Test" type="SETUP">
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.904196" level="INFO">Creating Session using : alias=payments_api, url=http://localhost:3001, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>payments_api</arg>
-<arg>http://localhost:3001</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-11-05T16:39:00.904106" elapsed="0.000189"/>
-</kw>
-<status status="PASS" start="2025-11-05T16:39:00.903937" elapsed="0.000411"/>
-</kw>
-<kw name="Cenario Generico de Autorizacao">
-<kw name="Log To Console" owner="BuiltIn">
-<arg>-- Executando Cenário: ${TEST NAME} --</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.904712" elapsed="0.000145"/>
-</kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.905159" level="INFO">&amp;{body} = { amount=9999.99 | installments=1 | merchant_id=MID_A }</msg>
-<var>&amp;{body}</var>
-<arg>amount=${amount}</arg>
-<arg>installments=${installments}</arg>
-<arg>merchant_id=${mid_id}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.904940" elapsed="0.000238"/>
-</kw>
-<kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.909634" level="INFO">POST Request : url=http://localhost:3001/api/authorize 
- path_url=/api/authorize 
- headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '66', 'Content-Type': 'application/json'} 
- body=b'{"amount": "9999.99", "installments": "1", "merchant_id": "MID_A"}' 
- </msg>
-<msg time="2025-11-05T16:39:00.909674" level="INFO">POST Response : url=http://localhost:3001/api/authorize 
- status=200, reason=OK 
- headers={'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With', 'Content-Length': '109', 'Date': 'Wed, 05 Nov 2025 19:39:00 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
- body={ 
-  "status": "APPROVED", "auth_code": "XYZ123", "transaction_id": "218b5fb8-df60-49ad-b749-b755f47fced0" 
-} 
- </msg>
-<msg time="2025-11-05T16:39:00.909734" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>payments_api</arg>
-<arg>/api/authorize</arg>
-<arg>json=${body}</arg>
-<arg>expected_status=any</arg>
-<doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.905246" elapsed="0.004506"/>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-11-07T01:50:54.783118" level="INFO">${ERROR_CODE} = MID_MISMATCH</msg>
+<var>${ERROR_CODE}</var>
+<arg>${CAPTURE_RESPONSE.json()}</arg>
+<arg>error_code</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-11-07T01:50:54.782830" elapsed="0.000306"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.910096" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>${expected_status}</arg>
+<arg>${ERROR_CODE}</arg>
+<arg>MID_MISMATCH</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.909828" elapsed="0.000301"/>
+<status status="PASS" start="2025-11-07T01:50:54.783295" elapsed="0.000100"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>Resultado: Status ${response.status_code} validado.</arg>
+<arg>SUCESSO: O sistema protegeu a integridade (MID Mismatch).</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.910191" elapsed="0.000273"/>
+<status status="PASS" start="2025-11-07T01:50:54.783490" elapsed="0.000113"/>
 </kw>
-<arg>9999.99</arg>
-<arg>1</arg>
-<arg>MID_A</arg>
-<arg>200</arg>
-<status status="PASS" start="2025-11-05T16:39:00.904504" elapsed="0.006001"/>
-</kw>
-<status status="PASS" start="2025-11-05T16:39:00.903709" elapsed="0.006894"/>
+<doc>Testa o Quality Gate da Regra: A Captura deve falhar (403) se o MID for diferente da Autorizacao.</doc>
+<status status="PASS" start="2025-11-07T01:50:54.761150" elapsed="0.022603"/>
 </test>
-<test id="s1-t4" name="Cenario Parcelado Nao Permitido" line="24">
-<kw name="Setup Data Driven Test" type="SETUP">
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.911179" level="INFO">Creating Session using : alias=payments_api, url=http://localhost:3001, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>payments_api</arg>
-<arg>http://localhost:3001</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-11-05T16:39:00.911123" elapsed="0.000132"/>
-</kw>
-<status status="PASS" start="2025-11-05T16:39:00.910995" elapsed="0.000296"/>
-</kw>
-<kw name="Cenario Generico de Autorizacao">
-<kw name="Log To Console" owner="BuiltIn">
-<arg>-- Executando Cenário: ${TEST NAME} --</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.911587" elapsed="0.000136"/>
-</kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.912000" level="INFO">&amp;{body} = { amount=100.00 | installments=4 | merchant_id=MID_A }</msg>
-<var>&amp;{body}</var>
-<arg>amount=${amount}</arg>
-<arg>installments=${installments}</arg>
-<arg>merchant_id=${mid_id}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.911802" elapsed="0.000216"/>
-</kw>
-<kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-11-05T16:39:00.916306" level="INFO">POST Request : url=http://localhost:3001/api/authorize 
- path_url=/api/authorize 
- headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '65', 'Content-Type': 'application/json'} 
- body=b'{"amount": "100.00", "installments": "4", "merchant_id": "MID_A"}' 
- </msg>
-<msg time="2025-11-05T16:39:00.916353" level="INFO">POST Response : url=http://localhost:3001/api/authorize 
- status=400, reason=Bad Request 
- headers={'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With', 'Content-Length': '40', 'Date': 'Wed, 05 Nov 2025 19:39:00 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
- body={ "error_code": "INVALID_INSTALLMENTS" } 
- </msg>
-<msg time="2025-11-05T16:39:00.916424" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<var>${response}</var>
-<arg>payments_api</arg>
-<arg>/api/authorize</arg>
-<arg>json=${body}</arg>
-<arg>expected_status=any</arg>
-<doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.912085" elapsed="0.004360"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-11-05T16:39:00.916855" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>${expected_status}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.916534" elapsed="0.000360"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Resultado: Status ${response.status_code} validado.</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-11-05T16:39:00.916968" elapsed="0.000269"/>
-</kw>
-<arg>100.00</arg>
-<arg>4</arg>
-<arg>MID_A</arg>
-<arg>400</arg>
-<status status="PASS" start="2025-11-05T16:39:00.911419" elapsed="0.005857"/>
-</kw>
-<status status="PASS" start="2025-11-05T16:39:00.910793" elapsed="0.006584"/>
-</test>
-<status status="PASS" start="2025-11-05T16:39:00.316210" elapsed="0.601493"/>
+<status status="PASS" start="2025-11-07T01:50:54.460041" elapsed="0.324137"/>
 </suite>
 <statistics>
 <total>
-<stat pass="4" fail="0" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Data Driven Rules" id="s1" pass="4" fail="0" skip="0">Data Driven Rules</stat>
+<stat name="MID Integrity" id="s1" pass="1" fail="0" skip="0">MID Integrity</stat>
 </suite>
 </statistics>
 <errors>
