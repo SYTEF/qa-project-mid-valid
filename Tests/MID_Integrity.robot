@@ -1,5 +1,4 @@
 *** Settings ***
-# Roteiro (Settings):
 # declaração de bibliotecas
 Library    RequestsLibrary
 Library    Collections
