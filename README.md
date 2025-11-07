@@ -1,4 +1,4 @@
-# 🧩 QA Project MID Valid  
+# QA Project MID Valid  
 > Framework de Garantia de Qualidade focado em **integridade de pagamentos**, **validação de regras de negócio** e **testes de escalabilidade** em APIs financeiras (POS → Backend).
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
@@ -10,9 +10,9 @@
 **Objetivo do Projeto**
 Este projeto tem como meta garantir a **confiabilidade e integridade** das comunicações entre terminais POS e serviços backend.  
 A automação cobre:
-- 🧩 **Integridade de MID** (Merchant ID) — validações de identidade e respostas HTTP.  
-- 🧠 **Regras de Negócio** — testes de consistência baseados em dados (`data-driven`).  
-- ⚙️ **Escalabilidade e Performance** — simulações de carga com usuários simultâneos.
+- **Integridade de MID** (Merchant ID) — validações de identidade e respostas HTTP.  
+- **Regras de Negócio** — testes de consistência baseados em dados (`data-driven`).  
+- **Escalabilidade e Performance** — simulações de carga com usuários simultâneos.
 
 ---
 
