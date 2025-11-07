@@ -8,7 +8,8 @@
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 
-**Objetivo**: este projeto tem como meta garantir a **confiabilidade e integridade** das comunicações entre terminais POS e serviços backend.  
+## **Objetivo** 
+Este projeto tem como meta garantir a **confiabilidade e integridade** das comunicações entre terminais POS e serviços backend.  
 A automação cobre:
 - **Integridade de MID** (Merchant ID) — validações de identidade e respostas HTTP.  
 - **Regras de Negócio** — testes de consistência baseados em dados (`data-driven`).  
@@ -27,6 +28,15 @@ A automação cobre:
 <img width="610" height="1072" alt="PANDASCSV" src="https://github.com/user-attachments/assets/8a1b8293-0490-44ca-8e87-d26232bfb811" />
 
 <img width="1328" height="239" alt="LOCUST" src="https://github.com/user-attachments/assets/46cca2eb-2174-4b22-86ea-55ef69fdb864" />
+
+**Stack Utilizada**
+| Categoria | Tecnologia | Função |
+|:--|:--|:--|
+| Automação de Testes | **Robot Framework** | Execução de testes funcionais e de API |
+| Manipulação de Dados | **Pandas** | Leitura e tratamento de cenários data-driven |
+| Teste de Carga | **Locust** | Simulação de múltiplos usuários |
+| Linguagem | **Python 3.10+** | Base principal do projeto |
+| Relatórios | **Robot Report + HTML** | Saída visual e análise de resultados |
 
 ---
 
