@@ -1,5 +1,5 @@
 # QA Project MID Valid  
-> Framework de Garantia de Qualidade focado em **integridade de pagamentos**, **validação de regras de negócio** e **testes de escalabilidade** em APIs financeiras (POS → Backend).
+> Framework de Garantia de Qualidade focado em **integridade de pagamentos**, **validação de regras de negócio** e **testes de escalabilidade** em APIs financeiras (POS - Backend).
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![Robot Framework](https://img.shields.io/badge/Robot_Framework-Testing-green)
