@@ -7,8 +7,8 @@
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-**Objetivo do Projeto**
-Este projeto tem como meta garantir a **confiabilidade e integridade** das comunicações entre terminais POS e serviços backend.  
+
+**Objetivo** este projeto tem como meta garantir a **confiabilidade e integridade** das comunicações entre terminais POS e serviços backend.  
 A automação cobre:
 - **Integridade de MID** (Merchant ID) — validações de identidade e respostas HTTP.  
 - **Regras de Negócio** — testes de consistência baseados em dados (`data-driven`).  
