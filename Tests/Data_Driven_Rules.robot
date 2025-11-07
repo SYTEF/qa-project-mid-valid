@@ -1,5 +1,5 @@
 *** Settings ***
-Library    ../data_library.py  # Mantemos a importação por organização
+Library    ../data_library.py
 Library    RequestsLibrary
 Library    Collections
 
