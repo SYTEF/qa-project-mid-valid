@@ -58,10 +58,11 @@ pip install -r requirements.txt
 
 ### 4. Executar os testes funcionais
 robot Tests/MID_Integrity.robot
+
 robot Tests/Data_Driven_Rules.robot
 
 ### 5. Executar o teste de carga
-locust -f locustfile.py
+locust
 
 ## (MID Integrity)
 
